@@ -240,7 +240,7 @@ def addBid(request, id):
             messages.error(request, "Invalid bid amount.")
             return HttpResponseRedirect(reverse("listing", args=(id, )))
 
-        # Always require bid to be greater than starting_bid
+        
         if bid_amount < listing.starting_bid:
             messages.error(
                 request,
@@ -248,7 +248,7 @@ def addBid(request, id):
             )
             return HttpResponseRedirect(reverse("listing", args=(id, )))
 
-        # If there is a current bid, require higher than that too
+        
         current_price = listing.price.bid if listing.price else listing.starting_bid
         if bid_amount <= current_price:
             messages.error(
@@ -281,6 +281,6 @@ def closeAuction(request, id):
     return redirect("listing", id=listing.id)
 
 def closeListing(request, id):
-    # Your logic here
+    
     pass
 
