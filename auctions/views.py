@@ -54,11 +54,11 @@ def createListing(request):
             owner=currentUser,
             category=categoryData,
             is_active=True,
-            price=bid  # <-- assign the bid object here
+            price=bid  
         )
         newListing.save()
 
-        return redirect("index")  # or your success url
+        return redirect("index")  
     else:
         categories = Category.objects.all()
         return render(request, "auctions/create.html", {"categories": categories})
@@ -152,11 +152,11 @@ def create(request):
             owner=currentUser,
             category=categoryData,
             is_active=True,
-            price=bid  # <-- assign the bid object here
+            price=bid  
         )
         newListing.save()
 
-        return redirect("index")  # or your success url
+        return redirect("index")  
     else:
         categories = Category.objects.all()
         return render(request, "auctions/create.html", {"categories": categories})
@@ -197,7 +197,7 @@ def addWatchlist(request, id):
     listing = Listing.objects.get(pk=id)
     currentUser = request.user
     listing.watchlist.add(currentUser)
-    print(listing.watchlist.all())  # Debug: See if user is added
+    print(listing.watchlist.all())  
     return HttpResponseRedirect(reverse("listing", args=(id, )))
 
 
@@ -210,7 +210,7 @@ def watchlist(request):
     })
 def addComment(request, id):
     if request.method == "POST":
-        message = request.POST.get("message")  # <-- fix here
+        message = request.POST.get("message")  
         currentUser = request.user
 
         listingData = Listing.objects.get(pk=id)
